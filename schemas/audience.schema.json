@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/audience.schema.json",
+  "title": "Audience Profile",
+  "type": "object",
+  "required": ["schema_version", "profile_id", "status", "segments"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "status": { "enum": ["complete", "incomplete", "TODO_VERIFY"] },
+    "source": { "type": "string" },
+    "source_type": { "type": "string" },
+    "public_use": { "enum": ["public", "private", "internal_only", "needs_approval", "TODO_VERIFY"] },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "description": { "type": "string" },
+          "needs": { "type": "array", "items": { "type": "string" } },
+          "content_preferences": { "type": "array", "items": { "type": "string" } },
+          "status": { "enum": ["verified", "self-described", "candidate", "TODO_VERIFY"] },
+          "priority": { "enum": ["primary", "secondary"] },
+          "confirmation_evidence": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "confirmed_demographics": { "type": "string" },
+    "confirmed_needs": { "type": "string" },
+    "confirmed_content_preferences": { "type": "string" },
+    "audience_size_ref": { "type": "string" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/creator-profile.schema.json",
+  "title": "Creator Profile",
+  "type": "object",
+  "required": ["schema_version", "profile_id", "mode", "authority"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "profile_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "mode": { "enum": ["structured", "legacy-reference"] },
+    "status": { "enum": ["active", "draft", "inactive", "incomplete"] },
+    "display_name": { "type": "string" },
+    "path": { "type": "string" },
+    "files": {
+      "type": "object",
+      "properties": {
+        "identity": { "type": "string" },
+        "business": { "type": "string" },
+        "audience": { "type": "string" },
+        "offers": { "type": "string" },
+        "voice": { "type": "string" },
+        "brand": { "type": "string" },
+        "channels": { "type": "string" },
+        "strategy": { "type": "string" },
+        "current_data": { "type": "string" },
+        "design_system": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "legacy_sources": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["creator_data", "system_policy", "references"],
+      "properties": {
+        "creator_data": { "type": "string" },
+        "system_policy": { "type": "string" },
+        "references": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

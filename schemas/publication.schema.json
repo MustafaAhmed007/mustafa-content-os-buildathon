@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/publication.schema.json",
+  "title": "Publication Record",
+  "type": "object",
+  "required": ["schema_version", "publication_id", "content_id", "profile_id", "platform", "status"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "publication_id": { "type": "string" },
+    "content_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "platform": { "type": "string" },
+    "account_ref": { "type": "string" },
+    "provider": { "type": "string" },
+    "provider_publication_id": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "published_at": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["published", "removed", "unknown"] },
+    "metrics_snapshot_ref": { "type": "string" }
+  },
+  "additionalProperties": false
+}

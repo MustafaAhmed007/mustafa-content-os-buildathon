@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/evidence.schema.json",
+  "title": "Evidence Contract",
+  "description": "Definition for a future evidence record. This phase does not implement evidence storage or verification.",
+  "type": "object",
+  "required": ["schema_version", "evidence_id", "profile_id", "type", "status"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "evidence_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "type": { "enum": ["first-party", "third-party", "platform", "repository", "asset", "testimonial", "self-reported", "visual-only"] },
+    "source": { "type": "string" },
+    "captured_at": { "type": "string", "format": "date-time" },
+    "period": { "type": "string" },
+    "locator": { "type": "string" },
+    "content_hash": { "type": "string" },
+    "status": { "enum": ["unreviewed", "reviewed", "verified", "expired", "rejected", "TODO_VERIFY"] },
+    "reviewed_by": { "type": "string" },
+    "reviewed_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/render-manifest.schema.json",
+  "title": "Render Manifest",
+  "type": "object",
+  "required": ["schema_version", "manifest_id", "content_id", "profile_id", "canvas", "slides", "exports"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "manifest_id": { "type": "string" },
+    "content_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "theme_ref": { "type": "string" },
+    "canvas": {
+      "type": "object",
+      "required": ["width", "height", "scale"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "scale": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["number", "template"],
+        "properties": {
+          "number": { "type": "integer", "minimum": 1 },
+          "template": { "type": "string" },
+          "content_ref": { "type": "string" },
+          "asset_refs": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "exports": {
+      "type": "object",
+      "required": ["png", "zip", "pdf"],
+      "properties": {
+        "png": { "type": "boolean" },
+        "zip": { "type": "boolean" },
+        "pdf": { "type": "boolean" },
+        "directory": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

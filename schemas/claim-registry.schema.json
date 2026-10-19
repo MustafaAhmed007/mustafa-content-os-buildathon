@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/claim-registry.schema.json",
+  "title": "Claim Registry",
+  "description": "Profile-scoped claim declarations. Validation establishes structure, not evidence authenticity or publication approval.",
+  "type": "object",
+  "required": ["schema_version", "profile", "claims"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "profile": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "claims": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim" },
+      "uniqueItems": true,
+      "x-unique-by": "claim_id",
+      "$comment": "Draft 2020-12 cannot express uniqueness of one property across array items. scripts/validate_claim_registry.py implements x-unique-by; ordinary validators only enforce whole-record uniqueItems."
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nonblank": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "claim": {
+      "type": "object",
+      "required": [
+        "claim_id", "claim", "claim_type", "subject", "status", "source",
+        "source_type", "evidence_refs", "verification_status", "public_use",
+        "publication_rule", "created_at", "expires_at", "notes"
+      ],
+      "properties": {
+        "claim_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "claim": { "$ref": "#/$defs/nonblank" },
+        "claim_type": {
+          "enum": ["identity_claim", "positioning_claim", "capability_claim", "project_claim", "metric_claim", "experience_claim", "result_claim", "testimonial_claim", "technical_claim"]
+        },
+        "subject": { "$ref": "#/$defs/nonblank" },
+        "status": { "enum": ["candidate", "verified", "expired", "restricted", "TODO_VERIFY"] },
+        "source": { "$ref": "#/$defs/nonblank" },
+        "source_type": { "$ref": "#/$defs/nonblank" },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+          "uniqueItems": true
+        },
+        "verification_status": {
+          "enum": ["verified", "self_reported", "source_verified", "first_party_verified", "third_party_verified", "unverified", "expired"]
+        },
+        "public_use": { "enum": ["public", "private", "internal_only", "needs_approval", "TODO_VERIFY"] },
+        "publication_rule": { "$ref": "#/$defs/nonblank" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "expires_at": {
+          "anyOf": [
+            { "type": "string", "format": "date-time" },
+            { "const": "TODO_VERIFY" }
+          ]
+        },
+        "notes": { "type": "array", "items": { "$ref": "#/$defs/nonblank" } },
+        "applicability": { "$ref": "#/$defs/applicability", "description": "Optional authoritative scope for supported assertion types and exact measurements. It never changes verification or public-use classifications." }
+      },
+      "additionalProperties": false
+    },
+    "quantitative": {
+      "type": "object",
+      "required": ["metric", "value", "unit", "period"],
+      "properties": {
+        "metric": { "enum": ["time_saved", "cost_reduction", "revenue", "performance", "latency", "growth", "conversion", "adoption", "customer_result", "benchmark"] },
+        "value": { "type": "number" },
+        "unit": { "$ref": "#/$defs/nonblank" },
+        "period": { "$ref": "#/$defs/nonblank" }
+      },
+      "additionalProperties": false
+    },
+    "applicability": {
+      "type": "object",
+      "required": ["assertion_types"],
+      "properties": {
+        "assertion_types": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "enum": ["identity", "positioning", "repository_existence", "project_existence", "quantitative_result", "operational_performance", "externally_attributed"] }
+        },
+        "quantitative": { "$ref": "#/$defs/quantitative" },
+        "statements": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/nonblank" } },
+        "temporal_scope": { "enum": ["historical", "current"] },
+        "attribution": { "$ref": "#/$defs/nonblank" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

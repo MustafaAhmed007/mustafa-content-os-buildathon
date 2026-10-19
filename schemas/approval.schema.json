@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/approval.schema.json",
+  "title": "Content Approval",
+  "type": "object",
+  "required": ["schema_version", "approval_id", "content_id", "profile_id", "status"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "approval_id": { "type": "string" },
+    "content_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "status": { "enum": ["pending", "approved", "rejected", "withdrawn"] },
+    "reviewer": { "type": "string" },
+    "reviewed_at": { "type": "string", "format": "date-time" },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

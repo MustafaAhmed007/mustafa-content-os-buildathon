@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/offer.schema.json",
+  "title": "Offer",
+  "type": "object",
+  "required": ["schema_version", "profile_id", "status", "offers"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "status": { "enum": ["complete", "incomplete", "TODO_VERIFY"] },
+    "source": { "type": "string" },
+    "source_type": { "type": "string" },
+    "public_use": { "enum": ["public", "private", "internal_only", "needs_approval", "TODO_VERIFY"] },
+    "claim_type": { "type": "string" },
+    "offers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "category": { "type": "string" },
+          "description": { "type": "string" },
+          "target_customer": { "type": "string" },
+          "audience_segment_ids": { "type": "array", "items": { "type": "string" } },
+          "price": { "type": ["string", "number"] },
+          "pricing": { "type": "string" },
+          "proof": { "type": "string" },
+          "publishable": { "type": "boolean" },
+          "enabled": { "type": "boolean" },
+          "public_use": { "enum": ["public", "private", "internal_only", "needs_approval", "TODO_VERIFY"] },
+          "currency": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "cta": { "type": "string" },
+          "keyword": { "type": "string" },
+          "status": { "enum": ["active", "draft", "inactive", "TODO_VERIFY"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "cta_policy": {
+      "type": "object",
+      "properties": {
+        "primary_mechanic": { "type": "string" },
+        "keyword": { "type": "string" },
+        "delivery_asset": { "type": "string" },
+        "destination_url": { "type": "string" },
+        "offer_selection": { "type": "string" },
+        "conversion_path": { "type": "string" },
+        "allow_private_draft_without_cta": { "type": "boolean" },
+        "enabled": { "type": "boolean" },
+        "publishable": { "type": "boolean" },
+        "status": { "enum": ["active", "verified", "ready", "configured", "draft", "inactive", "disabled", "unavailable", "TODO_VERIFY"] },
+        "public_use": { "enum": ["public", "private", "internal_only", "needs_approval", "TODO_VERIFY"] }
+      },
+      "additionalProperties": false
+    },
+    "publication_rule": { "type": "string" }
+  },
+  "additionalProperties": false
+}

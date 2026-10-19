@@ -1,0 +1,17 @@
+schema_version: "1.0"
+profile_id: PROFILE_ID
+status: incomplete
+
+colors:
+  primary: TODO_VERIFY
+  secondary: TODO_VERIFY
+  background: TODO_VERIFY
+  text: TODO_VERIFY
+
+typography:
+  display: TODO_VERIFY
+  body: TODO_VERIFY
+  code: TODO_VERIFY
+
+visual_rules:
+  - TODO_VERIFY

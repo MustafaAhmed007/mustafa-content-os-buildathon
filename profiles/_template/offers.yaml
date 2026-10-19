@@ -1,0 +1,10 @@
+schema_version: "1.0"
+profile_id: PROFILE_ID
+status: incomplete
+
+offers: []
+
+cta_policy:
+  primary_mechanic: TODO_VERIFY
+  one_offer_per_piece: TODO_VERIFY
+  one_keyword_per_piece: TODO_VERIFY

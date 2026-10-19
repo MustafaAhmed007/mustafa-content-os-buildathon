@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/active-profile.schema.json",
+  "title": "Active Profile Configuration",
+  "type": "object",
+  "required": ["schema_version", "active_profile", "profiles"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "active_profile": { "type": "string" },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["profile_id", "manifest"],
+        "properties": {
+          "profile_id": { "type": "string" },
+          "manifest": { "type": "string" },
+          "status": { "enum": ["active", "available", "incomplete", "legacy"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "properties": {
+        "preserve_legacy_root_files": { "type": "boolean" },
+        "legacy_behavior_profile": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

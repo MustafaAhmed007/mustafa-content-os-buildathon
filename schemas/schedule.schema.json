@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/schedule.schema.json",
+  "title": "Schedule Record",
+  "type": "object",
+  "required": ["schema_version", "schedule_id", "content_id", "profile_id", "status"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "schedule_id": { "type": "string" },
+    "content_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "provider": { "type": "string" },
+    "platform": { "type": "string" },
+    "account_ref": { "type": "string" },
+    "scheduled_for": { "type": "string", "format": "date-time" },
+    "timezone": { "type": "string" },
+    "status": { "enum": ["planned", "submitted", "scheduled", "failed", "cancelled", "manual-handoff"] },
+    "provider_reference": { "type": "string" },
+    "error": { "type": "string" }
+  },
+  "additionalProperties": false
+}

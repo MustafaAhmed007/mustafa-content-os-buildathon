@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/evidence-registry.schema.json",
+  "title": "Evidence Registry",
+  "description": "Profile-scoped evidence records. Structural and artifact-integrity checks do not establish factual truth or publication approval.",
+  "type": "object",
+  "required": ["schema_version", "profile", "evidence"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "profile": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence_record" },
+      "uniqueItems": true,
+      "x-unique-by": "evidence_id",
+      "$comment": "The supplied evidence validator enforces x-unique-by using the existing registry validator extension. Vanilla uniqueItems only detects identical records."
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nonblank": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "locator": {
+      "type": "object",
+      "required": ["path", "selector", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(?:yaml|yml|json)$",
+          "description": "Repository-relative local YAML/JSON artifact path; absolute paths and traversal are rejected."
+        },
+        "selector": {
+          "type": "string",
+          "pattern": "^(?:/(?:[^~/]|~[01])*)+$",
+          "description": "Nonempty RFC 6901 JSON Pointer into the captured artifact."
+        },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "evidence_record": {
+      "type": "object",
+      "required": [
+        "evidence_id", "evidence_type", "source", "source_type", "locator",
+        "subject", "description", "verification_status", "public_use",
+        "captured_at", "expires_at", "notes"
+      ],
+      "properties": {
+        "evidence_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "evidence_type": {
+          "enum": ["profile", "repository", "website", "document", "screenshot", "metric", "first_party", "third_party", "testimonial", "other"]
+        },
+        "source": { "$ref": "#/$defs/nonblank" },
+        "source_type": { "$ref": "#/$defs/nonblank" },
+        "locator": { "$ref": "#/$defs/locator" },
+        "subject": { "$ref": "#/$defs/nonblank" },
+        "description": { "$ref": "#/$defs/nonblank" },
+        "verification_status": {
+          "enum": ["verified", "self_reported", "source_verified", "first_party_verified", "third_party_verified", "unverified", "expired"]
+        },
+        "public_use": { "enum": ["public", "private", "internal_only", "needs_approval", "TODO_VERIFY"] },
+        "captured_at": { "type": "string", "format": "date-time" },
+        "expires_at": {
+          "anyOf": [
+            { "type": "string", "format": "date-time" },
+            { "const": "TODO_VERIFY" }
+          ]
+        },
+        "notes": { "type": "array", "items": { "$ref": "#/$defs/nonblank" } }
+      },
+      "additionalProperties": false
+    }
+  }
+}

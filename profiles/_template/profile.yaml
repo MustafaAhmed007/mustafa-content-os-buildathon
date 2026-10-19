@@ -1,0 +1,21 @@
+schema_version: "1.0"
+profile_id: PROFILE_ID
+mode: structured
+status: incomplete
+
+files:
+  identity: identity.md
+  business: business.yaml
+  audience: audience.yaml
+  offers: offers.yaml
+  voice: voice.md
+  brand: brand.yaml
+  channels: channels.yaml
+  strategy: strategy.md
+  current_data: current-data.md
+  design_system: TODO_VERIFY
+
+authority:
+  creator_data: "This profile directory"
+  system_policy: "systems/"
+  references: "references/"

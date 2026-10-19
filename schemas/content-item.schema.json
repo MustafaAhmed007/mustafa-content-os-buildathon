@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mustafa-content-os.local/schemas/content-item.schema.json",
+  "title": "Content Item",
+  "type": "object",
+  "required": ["schema_version", "content_id", "status", "platform", "content_type"],
+  "anyOf": [{ "required": ["profile"] }, { "required": ["profile_id"] }],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "content_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "profile": { "type": "string", "description": "Profile scope; profile_id remains a supported legacy alias. Both must agree when supplied." },
+    "status": { "enum": ["idea", "draft", "review", "approved", "public", "scheduled", "published", "killed", "archived"] },
+    "platform": { "type": "string" },
+    "content_type": { "type": "string" },
+    "pillar": { "type": "string" },
+    "idea": { "type": "string" },
+    "angle": { "type": "string" },
+    "hook": { "type": "string" },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["number", "role"],
+        "properties": {
+          "number": { "type": "integer", "minimum": 1 },
+          "role": { "type": "string" },
+          "headline": { "type": "string" },
+          "body": { "type": "string" },
+          "visual_note": { "type": "string" },
+          "claim_refs": { "type": "array", "items": { "type": "string" } },
+          "evidence_refs": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "caption": { "type": "string" },
+    "cta": { "type": "string" },
+    "cta_mechanics": { "$ref": "#/$defs/cta_mechanics", "description": "Explicit CTA mechanics, separate from creative cta wording. Authorization comes only from selected profile configuration." },
+    "claims": { "$ref": "#/$defs/references", "description": "Explicit claim IDs for the item, including caption/hook/CTA claims. Prose is not automatically interpreted." },
+    "evidence_refs": { "$ref": "#/$defs/references" },
+    "assertions": {
+      "type": "array", "items": { "$ref": "#/$defs/assertion" },
+      "description": "Typed assertions bound to exact copy fields or character spans. Required public-copy coverage is enforced by the validator, not inferred from prose."
+    },
+    "offer_id": { "type": "string" },
+    "keyword": { "type": "string" },
+    "render_manifest_ref": { "type": "string" },
+    "approval_ref": { "type": "string" },
+    "schedule_ref": { "type": "string" },
+    "publication_ref": { "type": "string" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nonblank": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "cta_mechanics": {
+      "type": "object",
+      "required": ["cta_type", "keyword", "offer_id", "destination", "delivery_asset", "conversion_path", "account"],
+      "properties": {
+        "cta_type": { "$ref": "#/$defs/nonblank" },
+        "keyword": { "$ref": "#/$defs/nonblank" },
+        "offer_id": { "$ref": "#/$defs/nonblank" },
+        "destination": { "$ref": "#/$defs/nonblank" },
+        "delivery_asset": { "$ref": "#/$defs/nonblank" },
+        "conversion_path": { "$ref": "#/$defs/nonblank" },
+        "account": { "$ref": "#/$defs/nonblank" }
+      },
+      "additionalProperties": false
+    },
+    "quantitative": {
+      "type": "object",
+      "required": ["metric", "value", "unit", "period"],
+      "properties": {
+        "metric": { "enum": ["time_saved", "cost_reduction", "revenue", "performance", "latency", "growth", "conversion", "adoption", "customer_result", "benchmark"] },
+        "value": { "type": "number" },
+        "unit": { "$ref": "#/$defs/nonblank" },
+        "period": { "$ref": "#/$defs/nonblank" }
+      },
+      "additionalProperties": false
+    },
+    "assertion": {
+      "type": "object",
+      "required": ["assertion_id", "target", "text", "assertion_type", "claim_refs"],
+      "properties": {
+        "assertion_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "target": { "$ref": "#/$defs/nonblank" },
+        "text": { "$ref": "#/$defs/nonblank" },
+        "assertion_type": { "enum": ["identity", "positioning", "repository_existence", "project_existence", "quantitative_result", "operational_performance", "externally_attributed", "non_factual", "unknown"] },
+        "subject": { "$ref": "#/$defs/nonblank" },
+        "claim_refs": { "$ref": "#/$defs/references" },
+        "evidence_refs": { "$ref": "#/$defs/references" },
+        "public_usage": { "enum": ["public", "private", "internal_only", "needs_approval", "TODO_VERIFY"] },
+        "basis": { "enum": ["self_description", "recorded_observation", "independently_verified"] },
+        "temporal_scope": { "enum": ["historical", "current"] },
+        "attribution": { "$ref": "#/$defs/nonblank" },
+        "quantitative": { "$ref": "#/$defs/quantitative" },
+        "span": {
+          "type": "object", "required": ["start", "end"],
+          "properties": { "start": { "type": "integer", "minimum": 0 }, "end": { "type": "integer", "minimum": 1 } },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "references": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+      "uniqueItems": true
+    }
+  }
+}
