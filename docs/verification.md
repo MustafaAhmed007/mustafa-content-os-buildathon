@@ -27,8 +27,11 @@ source, and passed all 242 tests.
 ## BLOCKED BY HOST
 
 Docker was installed locally and the daemon was started with a host-compatible
-configuration. The Docker build reached the base-image layer download but the
-container environment rejected layer ownership restoration:
+configuration using the `vfs` storage driver and a data root on the project
+filesystem. A control build from `FROM scratch` succeeded, proving that the
+Docker client/daemon and build context work. The application build reached the
+base-image layer download but the container environment rejected layer
+ownership restoration:
 
 ```text
 failed to register layer: ApplyLayer exit status 1
@@ -36,7 +39,10 @@ lchown /etc/gshadow: invalid argument
 ```
 
 This is a host filesystem/container-runtime limitation, not an application
-test failure. The image build and container command remain unverified here.
+test failure. Both the original `python:3.11.2-slim-bullseye` base and a
+temporary `python:3.11.2-alpine` base failed on the same ownership operation.
+Changing the application base image would not be a valid fix for this host
+limitation, and the image build/container command remain unverified here.
 
 ## Publication
 
