@@ -1,0 +1,15 @@
+schema_version: "1.0"
+profile_id: mustafa
+status: active
+channels:
+  - id: instagram
+    platform: Instagram
+    handle_or_url: "@fixture_account"
+    content_types: [carousel]
+    status: verified
+    publishable: true
+    public_use: public
+    verification_status: verified
+publishing:
+  default_timezone: TODO_VERIFY
+  scheduling_time: TODO_VERIFY

@@ -1,0 +1,15 @@
+schema_version: "1.0"
+profile_id: mustafa
+mode: structured
+status: incomplete
+files:
+  identity: identity.md
+  voice: voice.md
+  strategy: strategy.md
+  channels: channels.yaml
+  offers: offers.yaml
+  design_system: TODO_VERIFY
+authority:
+  creator_data: tests/fixtures/public/repository/profiles/structured
+  system_policy: systems/
+  references: tests/fixtures/public/repository

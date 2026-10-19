@@ -1,0 +1,48 @@
+schema_version: "1.0"
+profile: mustafa
+evidence:
+  - evidence_id: evidence-mustafa-public-name
+    evidence_type: profile
+    source: knowledge/fixtures/profile.yaml
+    source_type: fixture_only
+    locator:
+      path: knowledge/fixtures/profile.yaml
+      selector: /identity/name
+      sha256: 643982d8d3a3955e29f7f000ab3508252c55bc5e4c6701c43b002305357300f3
+    subject: Example Creator
+    description: Synthetic fixture identity value.
+    verification_status: self_reported
+    public_use: public
+    captured_at: "2026-01-01T00:00:00Z"
+    expires_at: TODO_VERIFY
+    notes: [Synthetic fixture record; not evidence about a real person.]
+  - evidence_id: evidence-fixture-positioning
+    evidence_type: profile
+    source: knowledge/fixtures/profile.yaml
+    source_type: fixture_only
+    locator:
+      path: knowledge/fixtures/profile.yaml
+      selector: /positioning
+      sha256: 643982d8d3a3955e29f7f000ab3508252c55bc5e4c6701c43b002305357300f3
+    subject: Example Creator
+    description: Synthetic fixture positioning value.
+    verification_status: self_reported
+    public_use: public
+    captured_at: "2026-01-01T00:00:00Z"
+    expires_at: TODO_VERIFY
+    notes: [Synthetic fixture record; not evidence about a real person.]
+  - evidence_id: evidence-fixture-repository
+    evidence_type: repository
+    source: knowledge/fixtures/profile.yaml
+    source_type: fixture_only
+    locator:
+      path: knowledge/fixtures/profile.yaml
+      selector: /repository
+      sha256: 643982d8d3a3955e29f7f000ab3508252c55bc5e4c6701c43b002305357300f3
+    subject: fixture-repository
+    description: Synthetic fixture repository value.
+    verification_status: source_verified
+    public_use: public
+    captured_at: "2026-01-01T00:00:00Z"
+    expires_at: TODO_VERIFY
+    notes: [Synthetic fixture record; not evidence about a real project.]

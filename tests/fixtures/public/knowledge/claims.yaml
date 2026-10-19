@@ -1,0 +1,65 @@
+schema_version: "1.0"
+profile: mustafa
+claims:
+  - claim_id: mustafa-public-name
+    claim: Example Creator
+    claim_type: identity_claim
+    subject: Example Creator
+    status: verified
+    source: knowledge/fixtures/profile.yaml#identity.name
+    source_type: fixture_only
+    evidence_refs: [evidence-mustafa-public-name]
+    verification_status: self_reported
+    public_use: public
+    publication_rule: Fixture-only identity example.
+    created_at: "2026-01-01T00:00:00Z"
+    expires_at: TODO_VERIFY
+    notes: [Synthetic fixture record; not creator data.]
+  - claim_id: mustafa-primary-positioning
+    claim: Fixture automation systems builder.
+    claim_type: positioning_claim
+    subject: Example Creator
+    status: verified
+    source: knowledge/fixtures/profile.yaml#positioning
+    source_type: fixture_only
+    evidence_refs: [evidence-fixture-positioning]
+    verification_status: self_reported
+    public_use: public
+    publication_rule: Fixture-only positioning example.
+    created_at: "2026-01-01T00:00:00Z"
+    expires_at: TODO_VERIFY
+    notes: [Synthetic fixture record; not creator data.]
+    applicability:
+      assertion_types: [positioning]
+  - claim_id: mustafa-positioning-statement
+    claim: Fixture automation systems builder.
+    claim_type: positioning_claim
+    subject: Example Creator
+    status: verified
+    source: knowledge/fixtures/profile.yaml#positioning
+    source_type: fixture_only
+    evidence_refs: [evidence-fixture-positioning]
+    verification_status: self_reported
+    public_use: public
+    publication_rule: Fixture-only positioning example.
+    created_at: "2026-01-01T00:00:00Z"
+    expires_at: TODO_VERIFY
+    notes: [Synthetic fixture record; not creator data.]
+    applicability:
+      assertion_types: [positioning]
+  - claim_id: mustafa-adaptiverag-repository-observation
+    claim: The fixture repository exists.
+    claim_type: project_claim
+    subject: fixture-repository
+    status: verified
+    source: knowledge/fixtures/profile.yaml#repository
+    source_type: profile_observation
+    evidence_refs: [evidence-fixture-repository]
+    verification_status: source_verified
+    public_use: public
+    publication_rule: Historical fixture existence only.
+    created_at: "2026-01-01T00:00:00Z"
+    expires_at: TODO_VERIFY
+    notes: [Synthetic fixture record; not a repository assertion.]
+    applicability:
+      assertion_types: [repository_existence]

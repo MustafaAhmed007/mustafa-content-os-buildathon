@@ -1,0 +1,30 @@
+schema_version: "1.0"
+content_id: 2099-01-01-fixture-mustafa
+profile: mustafa
+status: draft
+platform: instagram
+content_type: carousel
+pillar: fixture-workflows
+angle: Fixture-only workflow boundary
+idea: Fixture-only structured idea.
+hook: Example Creator
+slides:
+  - number: 1
+    role: cover
+    headline: Example Creator
+    body: Fixture-only cover.
+    visual_note: Fixture-only cover visual.
+    claim_refs: [mustafa-public-name]
+  - number: 2
+    role: body
+    headline: Fixture-only step
+    body: Fixture-only explanation.
+    visual_note: "Pattern interrupt: fixture question."
+  - number: 3
+    role: cta
+    headline: Fixture-only action
+    body: Fixture-only CTA.
+    visual_note: Fixture-only CTA visual.
+caption: Example Creator
+cta: Comment FIXTURE for the fixture guide.
+claims: [mustafa-public-name]

@@ -1,0 +1,8 @@
+schema_version: "1.0"
+content_id: validator-example-valid
+profile: mustafa
+platform: portfolio
+content_type: text
+status: draft
+caption: Example Creator
+claims: [mustafa-public-name]

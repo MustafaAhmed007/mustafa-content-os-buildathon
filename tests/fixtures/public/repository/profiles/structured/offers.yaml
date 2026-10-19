@@ -1,0 +1,20 @@
+schema_version: "1.0"
+profile_id: mustafa
+status: active
+public_use: public
+  - id: fixture-offer
+    name: Fixture-only offer
+    description: Fixture-only delivery scope.
+    target_customer: Fixture-only audience
+    status: active
+    publishable: true
+    pricing: TODO_VERIFY
+    proof: TODO_VERIFY
+cta_policy:
+  primary_mechanic: comment_keyword
+  keyword: FIXTURE
+  delivery_asset: Fixture-only asset
+  destination_url: https://example.test/fixture
+  offer_selection: fixture-offer
+  conversion_path: fixture-comment-to-private-delivery
+  allow_private_draft_without_cta: true

@@ -1,0 +1,12 @@
+schema_version: "1.0"
+active_profile: manthan
+profiles:
+  - profile_id: manthan
+    manifest: profiles/manthan/profile.yaml
+    status: legacy
+  - profile_id: mustafa
+    manifest: profiles/mustafa/profile.yaml
+    status: incomplete
+compatibility:
+  preserve_legacy_root_files: true
+  legacy_behavior_profile: manthan

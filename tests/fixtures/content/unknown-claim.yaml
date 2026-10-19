@@ -1,0 +1,7 @@
+schema_version: "1.0"
+content_id: validator-example-unknown-claim
+profile: mustafa
+platform: portfolio
+content_type: text
+claims: [fixture-missing-claim]
+status: draft

@@ -1,0 +1,16 @@
+schema_version: "1.0"
+profile_id: manthan
+mode: legacy-reference
+status: active
+legacy_sources:
+  identity: fixture-identity.md
+  voice: fixture-voice.md
+  strategy: fixture-strategy.md
+  channels: fixture-channels.md
+  offers: fixture-offers.md
+  current_data: fixture-current-data.md
+  design_system: fixture-design-system.md
+authority:
+  creator_data: tests/fixtures/public/repository
+  system_policy: systems/
+  references: tests/fixtures/public/repository

@@ -1,0 +1,29 @@
+schema_version: "1.0"
+content_id: 2099-01-01-fixture-manthan
+profile: manthan
+status: draft
+platform: instagram
+content_type: carousel
+pillar: fixture-legacy
+angle: Fixture legacy angle
+idea: Fixture-only legacy idea.
+hook: Fixture legacy hook
+slides:
+  - number: 1
+    role: cover
+    headline: Fixture legacy cover
+    body: Fixture legacy body.
+    visual_note: Fixture legacy visual.
+  - number: 2
+    role: body
+    headline: Fixture legacy step
+    body: Fixture legacy explanation.
+    visual_note: "Pattern interrupt: fixture question."
+  - number: 3
+    role: cta
+    headline: Fixture legacy action
+    body: Fixture legacy CTA.
+    visual_note: Fixture legacy CTA visual.
+caption: Fixture legacy caption.
+cta: Comment FIXTURE for the fixture guide.
+claims: []
