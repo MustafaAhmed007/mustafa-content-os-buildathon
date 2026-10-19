@@ -110,6 +110,7 @@ python -m compileall -q scripts tests
 | `docs/buildathon-project.md` | Project scope and safety model |
 | `docs/architecture.md` | Component and trust-boundary overview |
 | `docs/demo-script.md` | Verified public demonstration commands |
+| `docs/verification.md` | Actual verification results and host limitations |
 
 ## Safety boundaries
 
