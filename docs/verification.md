@@ -46,5 +46,7 @@ limitation, and the image build/container command remain unverified here.
 
 ## Publication
 
-The submission repository has no remote configured. No GitHub repository was
-created, no push was performed, and no external submission ID was generated.
+The submission repository has the `origin` remote configured at
+`https://github.com/MustafaAhmed007/mustafa-content-os-buildathon.git`. The
+public GitHub repository is reachable, and the local `main` branch tracks
+`origin/main`. No external submission ID was generated.
